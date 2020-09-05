@@ -14,6 +14,43 @@ import java.util.Scanner;
 
 public class ProductService {
 
+    public Product getProductById(int id){
+
+        final StandardServiceRegistry standardServiceRegistry=
+                new StandardServiceRegistryBuilder().configure().build();
+
+        Product product=null;
+
+        try (SessionFactory sessionFactory=new MetadataSources(standardServiceRegistry)
+                .buildMetadata().buildSessionFactory()){
+            Session session=sessionFactory.openSession();
+            Transaction transaction=null;
+
+            try{
+                transaction=session.beginTransaction();
+                product=session.get(Product.class,id);
+                transaction.commit();
+            } catch (HibernateException e){
+                if (transaction!=null) transaction.rollback();
+                e.printStackTrace();
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return product;
+
+    }
+
+
+
+
+
+
+
+
     // create product
 
 
