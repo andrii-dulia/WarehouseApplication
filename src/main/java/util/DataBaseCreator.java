@@ -15,11 +15,13 @@ public class DataBaseCreator {
         final StandardServiceRegistry standardServiceRegistry=
                 new StandardServiceRegistryBuilder().configure().build();
 
+
         try (SessionFactory sessionFactory=new MetadataSources(standardServiceRegistry)
                 .buildMetadata().buildSessionFactory()){
             Session session=sessionFactory.openSession();
             session.close();
         }
+        //comment
         catch (Exception e){
             e.printStackTrace();
         }
