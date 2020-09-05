@@ -25,6 +25,14 @@ public class OrderDetails {
 
     private Order order;
 
+    // CONSTRUCTORS
+
+
+    public OrderDetails(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public long getOrederDetailsId() {
         return orederDetailsId;
     }
