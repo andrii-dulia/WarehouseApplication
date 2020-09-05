@@ -22,16 +22,10 @@ public class OrderDetailsService {
 
         int quantity=scanner.nextInt();
 
-        OrderDetails orderDetails1=new OrderDetails(product,quantity);
+        OrderDetails orderDetails=new OrderDetails(product,quantity);
 
 
-
-
-
-
-
-
-        return null;
+        return orderDetails;
 
     }
 }
