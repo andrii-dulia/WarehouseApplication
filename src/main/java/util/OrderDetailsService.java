@@ -1,6 +1,7 @@
 package util;
 
 import model.OrderDetails;
+import model.Product;
 
 import java.util.Scanner;
 
@@ -22,7 +23,8 @@ public class OrderDetailsService {
 
         int quantity=scanner.nextInt();
 
-        OrderDetails orderDetails=new OrderDetails(product,quantity);
+        OrderDetails orderDetails1=new OrderDetails(product,quantity);
+
 
         return orderDetails;
 
