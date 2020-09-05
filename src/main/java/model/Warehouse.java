@@ -22,6 +22,45 @@ public class Warehouse {
     @Column(name="quantity")
     int quantity;
 
+    //GETTERS ANE SETTERS
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getWarehouseUniqId() {
+        return warehouseUniqId;
+    }
+
+    public void setWarehouseUniqId(String warehouseUniqId) {
+        this.warehouseUniqId = warehouseUniqId;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    // CONSTRUCTORS
+
+    public Warehouse(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
 }
