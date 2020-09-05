@@ -9,7 +9,7 @@ public class OrderDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="detail_id")
 
-    long    orederDetailsId ;
+    private long    orderDetailsId ;
 
     @ManyToOne
     @JoinColumn(name="product_id")
@@ -25,11 +25,11 @@ public class OrderDetails {
     private Order order;
 
     public long getOrederDetailsId() {
-        return orederDetailsId;
+        return orderDetailsId;
     }
 
     public void setOrederDetailsId(long orederDetailsId) {
-        this.orederDetailsId = orederDetailsId;
+        this.orderDetailsId = orederDetailsId;
     }
 
     public Product getProduct() {
@@ -59,7 +59,7 @@ public class OrderDetails {
     @Override
     public String toString() {
         return "OrderDetails{" +
-                "orederDetailsId=" + orederDetailsId +
+                "orederDetailsId=" + orderDetailsId +
                 ", product=" + product.getName() +
                 ", quantity=" + quantity +
                 ", order=" + order +

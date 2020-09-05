@@ -16,7 +16,7 @@ public class Application {
         dataBaseCreator.createDataBase();
 
         // connection to DataBase and create all tables directly in main method
-  /*
+
         final StandardServiceRegistry standardServiceRegistry=
                 new StandardServiceRegistryBuilder().configure().build();
 
@@ -29,12 +29,12 @@ public class Application {
             e.printStackTrace();
         }
 
-*/
+
         // display  application menus and choosing option from menus
 
-        FirstMenu fm=new FirstMenu();
-        fm.displayMenu();
-        fm.selectOption();
+//        FirstMenu fm=new FirstMenu();
+//        fm.displayMenu();
+//        fm.selectOption();
 
 
 

@@ -6,9 +6,9 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/warehouse?serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/warehouse_data_base?serverTimezone=UTC</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">cherkassy</property>
+        <property name="connection.password">19Sprzaczka88</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">100</property>
         <property name="hibernate.connection.characterEncoding">UTF-8</property>
@@ -25,6 +25,8 @@
         <mapping class="model.Warehouse"/>
         <mapping class="model.Order"/>
         <mapping class="model.OrderDetails"/>
+        <mapping class="model.Address"/>
+        <mapping class="model.Client"/>
 
 
 

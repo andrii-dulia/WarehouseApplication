@@ -15,9 +15,13 @@ public class Order {
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private Set<OrderDetails> ordersDetails=new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "Client")
+    private Client client;
+
 
     @Column
-    String  adress;
+    String  address;
 
     public long getId() {
         return id;
@@ -36,11 +40,11 @@ public class Order {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", ordersDetails=" + ordersDetails +
-                ", adress='" + adress + '\'' +
+                ", adress='" + address + '\'' +
                 '}';
     }
 }

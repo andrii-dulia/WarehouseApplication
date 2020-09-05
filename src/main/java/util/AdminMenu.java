@@ -3,9 +3,14 @@ package util;
 import java.util.Scanner;
 
 public class AdminMenu {
+    public void AdminMenu1(){
+        displayMenu();
+        selectAdminOption();
+    }
+
     public static void displayMenu(){
         System.out.println("Administrator options:");
-        System.out.println("1.List of the clients-enter '1'");
+        System.out.println("1.List of the clients");
         System.out.println("2.Add client- enter '2'");
         System.out.println("3.List of warehouse managers - enter '3'");
         System.out.println("4.Add new  warehouse manager- enter '4'");
@@ -45,8 +50,10 @@ public class AdminMenu {
                 FirstMenu fm=new FirstMenu();
                 fm.displayMenu();
                 fm.selectOption();
+                System.out.println("Manager created");
+                AdminMenu1();
 
-                break;
+
 
 
 
@@ -57,6 +64,8 @@ public class AdminMenu {
 
             default:
                 System.out.println("Incorrect choice");
+                AdminMenu1();
+
         }
 
 
