@@ -11,7 +11,10 @@ public class OrderDetailsService {
         OrderDetails orderDetails=new OrderDetails();
 
         Scanner scanner=new Scanner(System.in);
-        System.out.println("Please provide product name");
+        System.out.println("Please provide product id");
+
+        int providedId=scanner.nextInt();
+
 
 
 
