@@ -1,6 +1,7 @@
 package util;
 
 import model.OrderDetails;
+import model.Product;
 
 import java.util.Scanner;
 
@@ -14,6 +15,11 @@ public class OrderDetailsService {
         System.out.println("Please provide product id");
 
         int providedId=scanner.nextInt();
+        ProductService productService=new ProductService();
+        Product product=productService.getProductById(providedId);
+
+        System.out.println("Please provide quantity");
+
 
 
 
