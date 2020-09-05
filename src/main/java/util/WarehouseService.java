@@ -2,6 +2,7 @@ package util;
 
 import model.OrderDetails;
 import model.Product;
+import model.Warehouse;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,12 +13,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.Scanner;
 
-public class OrderDetailsService {
+public class WarehouseService {
 
-    // create single position to order by providing product id
-    public OrderDetails createSinglePositionInOrder(){
+    //  create product to warehouse by Id
 
-        //OrderDetails orderDetails=new OrderDetails();
+    public Warehouse createSinglePositionInWarehouse(){
 
         Scanner scanner=new Scanner(System.in);
         System.out.println("Please provide product id");
@@ -26,18 +26,20 @@ public class OrderDetailsService {
         ProductService productService=new ProductService();
         Product product=productService.getProductById(providedId);
 
-        System.out.println("Please provide quantity");
+        System.out.println("Please provide quantity of products which will be added to warehouse");
 
         int quantity=scanner.nextInt();
 
-        OrderDetails orderDetails=new OrderDetails(product,quantity);
+        Warehouse warehouseItem=new Warehouse(product,quantity);
 
-        return orderDetails;
+
+
+        return warehouseItem;
 
     }
 
-    // add positions of orders (table orders_details) to data base
-    public void addProductasOrderDetail(OrderDetails orderDetails){
+    // add warehouse item
+    public void addProductToWarehouse(Warehouse warehouseItem){
 
         final StandardServiceRegistry standardServiceRegistry=
                 new StandardServiceRegistryBuilder().configure().build();
@@ -49,7 +51,7 @@ public class OrderDetailsService {
             Transaction transaction=null;
             try{
                 transaction=session.beginTransaction();
-                session.save(orderDetails);
+                session.save(warehouseItem);
                 transaction.commit();
             } catch (HibernateException e){
                 if (transaction!=null) transaction.rollback();

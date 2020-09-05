@@ -5,6 +5,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import util.DataBaseCreator;
 import util.FirstMenu;
+import util.OrderDetailsService;
+import util.WarehouseService;
 
 public class Application {
     public static void main(String[] args) {
@@ -14,6 +16,15 @@ public class Application {
         // connection to DataBase and create all tables
         DataBaseCreator dataBaseCreator=new DataBaseCreator();
         dataBaseCreator.createDataBase();
+
+        // test - order details
+        OrderDetailsService orderDetailsService=new OrderDetailsService();
+        orderDetailsService.addProductasOrderDetail(orderDetailsService.createSinglePositionInOrder());
+        //System.out.println(orderDetailsService.createSinglePositionInOrder().toString());
+
+        // test add product to warehouse
+        WarehouseService warehouseService=new WarehouseService();
+        warehouseService.addProductToWarehouse(warehouseService.createSinglePositionInWarehouse());
 
         // connection to DataBase and create all tables directly in main method
   /*
@@ -32,10 +43,10 @@ public class Application {
 */
         // display  application menus and choosing option from menus
 
-        FirstMenu fm=new FirstMenu();
+ /*       FirstMenu fm=new FirstMenu();
         fm.displayMenu();
         fm.selectOption();
-
+*/
 
 
 
