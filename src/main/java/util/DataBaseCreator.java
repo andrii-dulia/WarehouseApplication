@@ -20,6 +20,7 @@ public class DataBaseCreator {
             Session session=sessionFactory.openSession();
             session.close();
         }
+        //comment
         catch (Exception e){
             e.printStackTrace();
         }
