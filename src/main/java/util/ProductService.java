@@ -98,6 +98,9 @@ public class ProductService {
 
         public List<Product> getProducts(){
 
+
+
+
             final StandardServiceRegistry standardServiceRegistry=
                     new StandardServiceRegistryBuilder().configure().build();
 
@@ -129,7 +132,6 @@ public class ProductService {
             return products;
 
     }
-
 
 
 

@@ -59,6 +59,10 @@ public class Warehouse {
 
     // CONSTRUCTORS
 
+
+    public Warehouse() {
+    }
+
     public Warehouse(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;

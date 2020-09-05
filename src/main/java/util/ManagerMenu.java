@@ -23,10 +23,15 @@ public class ManagerMenu implements LogIn {
 
         switch (choice){
             case "1":
-                System.out.println("PRODUCTS");
                 ProductService productService1=new ProductService();
-                ListPrinter listPrinter=new ListPrinter();
-                listPrinter.printList(productService1.getProducts());
+               for(int i=0;i<productService1.getProducts().size();i++){
+                   System.out.println(productService1.getProducts().get(i).toString());
+               }
+
+                //System.out.println("PRODUCTS");
+               // ProductService productService1=new ProductService();
+               // ListPrinter listPrinter=new ListPrinter();
+               // listPrinter.productListPrint(productService1.getProducts());
 
                 ManagerMenu managerMenu=new ManagerMenu();
                 managerMenu.displayMenu();
@@ -52,13 +57,9 @@ public class ManagerMenu implements LogIn {
 
                 break;
             case "4":
-                System.out.println("CREATE NEW MANAGER");
-                //ManagerService managerService=new ManagerService();
-                //Manager manager=new Manager();
-                //managerService.addNewManager(manager.createManager());
-                FirstMenu fm=new FirstMenu();
-                fm.displayMenu();
-                fm.selectOption();
+                System.out.println("ADD  PRODUCT TO WAREHOUSE");
+                WarehouseService warehouseService=new WarehouseService();
+                warehouseService.addProductToWarehouse(warehouseService.createSinglePositionInWarehouse());
 
                 break;
 
@@ -78,6 +79,43 @@ public class ManagerMenu implements LogIn {
 
     @Override
     public boolean logIn() {
-        return false;
+        boolean result = true;
+        System.out.println("Please provide your adminID");
+        boolean managerNameIsCorrect=false;
+  /*
+        do{
+            Scanner adScan=new Scanner(System.in);
+            String tempId=adScan.nextLine();
+
+            if (tempName.equals(adminID)){
+                adminIdIsCorrect=true;
+                System.out.println("Please provide your PIN(4digits)?");
+                boolean pinIsCorrect=true;
+                int counter=0;
+                do {
+                    String tempPin=adScan.nextLine();
+
+                    if (tempPin.equals(adminPin)){
+                        System.out.println("You have loged in as administrator!!!");
+                        pinIsCorrect=true;
+                        result=true;
+                    }else {
+                        pinIsCorrect=false;
+                        result=false;
+                        System.out.println("You have provided wrong PIN!!!Please provide again?");
+                        counter++;
+                        if (counter==1) System.out.println("You have 2 attempts!!!");
+                        if (counter==2) System.out.println("last attempt!!!!");
+                        if (counter==3) pinIsCorrect=true;
+                    }
+                }while (pinIsCorrect==false);
+
+            }else{
+                System.out.println("You have provided wrong adminID.Please provide again!");
+                adminIdIsCorrect=false;
+            }
+        }while(managerNameIsCorrect==false);
+*/
+        return true;
     }
 }

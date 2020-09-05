@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("WAREHOUSE MANAGEMENT APPLICATION");
 
-
+/*
         // connection to DataBase and create all tables
         DataBaseCreator dataBaseCreator=new DataBaseCreator();
         dataBaseCreator.createDataBase();
@@ -25,7 +25,7 @@ public class Application {
         // test add product to warehouse
         WarehouseService warehouseService=new WarehouseService();
         warehouseService.addProductToWarehouse(warehouseService.createSinglePositionInWarehouse());
-
+/*
         // connection to DataBase and create all tables directly in main method
   /*
         final StandardServiceRegistry standardServiceRegistry=
@@ -43,10 +43,10 @@ public class Application {
 */
         // display  application menus and choosing option from menus
 
- /*       FirstMenu fm=new FirstMenu();
+        FirstMenu fm=new FirstMenu();
         fm.displayMenu();
         fm.selectOption();
-*/
+
 
 
 

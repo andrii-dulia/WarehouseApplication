@@ -35,10 +35,24 @@ public class FirstMenu {
 
                 break;
             case "2":
-                System.out.println("You have logeged in as manager");
+                System.out.println("You are trying to log in  as manager");
+
+
+
                 ManagerMenu managerMenu=new ManagerMenu();
-                managerMenu.displayMenu();
-                managerMenu.selectManagerOption();
+                if (managerMenu.logIn()==true){
+                    managerMenu.displayMenu();
+                    managerMenu.selectManagerOption();
+                } else {
+                    System.out.println(" You can not procced as manager!!!");
+                    FirstMenu fm=new FirstMenu();
+                    fm.displayMenu();
+                    fm.selectOption();
+                }
+
+
+                //managerMenu.displayMenu();
+                //managerMenu.selectManagerOption();
 
                 break;
 
