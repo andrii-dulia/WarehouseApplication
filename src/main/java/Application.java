@@ -43,10 +43,10 @@ public class Application {
 */
         // display  application menus and choosing option from menus
 
- /*       FirstMenu fm=new FirstMenu();
+        FirstMenu fm=new FirstMenu();
         fm.displayMenu();
         fm.selectOption();
-*/
+
 
 
 
