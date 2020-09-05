@@ -2,7 +2,7 @@ package util;
 
 import java.util.Scanner;
 
-public class ManagerMenu {
+public class ManagerMenu implements LogIn {
     public void displayMenu(){
         System.out.println("Manager options:");
         System.out.println("1.List of the products-enter '1'");
@@ -74,5 +74,10 @@ public class ManagerMenu {
         }
 
 
+    }
+
+    @Override
+    public boolean logIn() {
+        return false;
     }
 }
