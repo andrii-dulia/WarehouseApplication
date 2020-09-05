@@ -9,7 +9,7 @@ public class OrderDetailsService {
 
     public OrderDetails createSinglePositionInOrder(){
 
-        OrderDetails orderDetails=new OrderDetails();
+        //OrderDetails orderDetails=new OrderDetails();
 
         Scanner scanner=new Scanner(System.in);
         System.out.println("Please provide product id");
