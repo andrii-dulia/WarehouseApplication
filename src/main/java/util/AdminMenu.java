@@ -1,97 +1,81 @@
 package util;
 
+
 import java.util.Scanner;
 
 public class AdminMenu {
-    public void AdminMenu1(){
+    public Scanner in = new Scanner(System.in);
+    String choice;
+
+
+    public void adminMenu1() throws InterruptedException {
         displayMenu();
         selectAdminOption();
     }
 
-    public static void displayMenu(){
+    public static void displayMenu() {
         System.out.println("Administrator options:");
         System.out.println("1.List of the clients");
-        System.out.println("2.Add client- enter '2'");
-        System.out.println("3.List of warehouse managers - enter '3'");
-        System.out.println("4.Add new  warehouse manager- enter '4'");
-        System.out.println("5.List of items - enter '5'");
-        System.out.println("6.Add new item- enter '6'");
-        System.out.println("7.Back to previous menu- enter 'q'");
-        System.out.println("Please make your choise???");
+        System.out.println("2.Add client");
+        System.out.println("3.List of warehouse managers");
+        System.out.println("4.Add new  warehouse manager");
+        System.out.println("5.List of items");
+        System.out.println("6.Add new item");
+        System.out.println("0.Back to previous menu");
 
     }
-    public  void selectAdminOption(){
 
-        Scanner myScanner= new Scanner(System.in);
+    public void selectAdminOption() throws InterruptedException {
 
-        String  choice=myScanner.nextLine();
-
-        switch (choice){
+        choice = in.next();
+        switch (choice) {
             case "1":
                 System.out.println("CLIENTS");
+                System.out.println("Empty list");
 
 
-
-
-                break;
+                adminMenu1();
             case "2":
                 System.out.println("CREATE NEW CLIENT");
 
-                break;
+
 
             case "3":
                 System.out.println("MANAGERS");
 
-                break;
+
             case "4":
                 System.out.println("CREATE NEW MANAGER");
-                ManagerService managerService=new ManagerService();
+
+                ManagerService managerService = new ManagerService();
                 managerService.addNewManager(managerService.createManager());
-                FirstMenu fm=new FirstMenu();
-                fm.displayMenu();
-                fm.selectOption();
                 System.out.println("Manager created");
-                AdminMenu1();
+                adminMenu1();
 
 
-
-
-
-            case "q":
-                System.out.println("Are you really want to quite???");
-
-                break;
+            case "0":
+                System.out.println("Bye Bye");
+                adminMenu1();
 
             default:
                 System.out.println("Incorrect choice");
-                AdminMenu1();
+                adminMenu1();
 
         }
-
-
-
-
     }
 
+    public static boolean adminLogIn(String name, Scanner in){
+        boolean result = false;
+        switch (name){
+            case "Piotrek":
+                result = true;
+            case "Andrii":
+                result = true;
+            default:
 
-
-
-
-
-    public static boolean adminLogIn(){
-        boolean result = true;
-        System.out.println("Please provide your name");
-        Scanner scanner= new Scanner(System.in);
-        String tempAdminName=scanner.nextLine();
-
-
+        }
         return result;
-
-
-
     }
-
-
 
 
 }

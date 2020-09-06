@@ -1,10 +1,12 @@
 package model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Client")
+@Table(name="Client")
 public class Client {
 
     @Id
@@ -20,8 +22,22 @@ public class Client {
     private Address address;
 
     @OneToMany
-    @JoinColumn(name = "Order")
-    List<Order> orderList;
+    @JoinColumn(name = "Order_id")
+    private Set<Order> orders=new HashSet<>();
+
+    @OneToMany
+    @JoinColumn(name = "Order_details")
+    private Set<OrderDetails> orderDetailsSet = new HashSet<>();
+
+
+
+    public void setClientId(long clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setOrderList(Set<Order> orderList) {
+        this.orders = orderList;
+    }
 
     public Client(String fullName) {
         this.fullName = fullName;
@@ -29,10 +45,6 @@ public class Client {
 
     public long getClientId() {
         return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
     }
 
     public String getFullName() {

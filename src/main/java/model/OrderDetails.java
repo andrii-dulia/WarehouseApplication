@@ -3,27 +3,29 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="order_details")
+@Table(name="Order_details")
 public class OrderDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="detail_id")
-
-    private long    orderDetailsId ;
+    private long orderDetailsId ;
 
     @ManyToOne
     @JoinColumn(name="product_id")
-
-
     private Product product;
 
     @Column(name="quantity")
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "Order_id")
 
     private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "Client")
+    private Client client;
 
     // CONSTRUCTORS
 
@@ -33,12 +35,16 @@ public class OrderDetails {
         this.quantity = quantity;
     }
 
-    public long getOrederDetailsId() {
+    public Client getClient() {
+        return client;
+    }
+
+    public long getOrder_details_id() {
         return orderDetailsId;
     }
 
-    public void setOrederDetailsId(long orederDetailsId) {
-        this.orderDetailsId = orederDetailsId;
+    public void setOrder_details_id(long order_details_id) {
+        this.orderDetailsId = orderDetailsId;
     }
 
     public Product getProduct() {

@@ -19,12 +19,12 @@ public class Manager {
     @Column
     String password;
 
-    public long getManagerId() {
-        return managerId;
-    }
-
     public void setManagerId(long managerId) {
         this.managerId = managerId;
+    }
+
+    public long getManagerId() {
+        return managerId;
     }
 
     public String getName() {

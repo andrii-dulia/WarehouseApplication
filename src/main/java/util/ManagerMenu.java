@@ -3,74 +3,72 @@ package util;
 import java.util.Scanner;
 
 public class ManagerMenu implements LogIn {
+
+    Scanner in = new Scanner(System.in);
+    String  choice;
+    String back = "";
+    ProductService productService=new ProductService();
+
+    public void menuBack(){
+        System.out.println("0. Previous menu");
+        back = in.next();
+        if (back=="0"){
+            managerMenu();
+        }else {
+            System.out.println("try again!!!");
+            menuBack();
+        }
+    }
+    public void managerMenu(){
+        displayMenu();
+        selectManagerOption();
+    }
+
     public void displayMenu(){
         System.out.println("Manager options:");
-        System.out.println("1.List of the products-enter '1'");
-        System.out.println("2.Add new products- enter '2'");
-        System.out.println("3.List of warehouse items (products in warehouse with ther atributes) - enter '3'");
-        System.out.println("4.Add new  warehouse item- enter '4'");
-        System.out.println("5.Orders menu - enter '5'");
-        System.out.println("6.Back to previous menu- enter 'q'");
-        System.out.println("Please make your choise???");
-
+        System.out.println("1.List of the products");
+        System.out.println("2.Add new products");
+        System.out.println("3.List of warehouse items (products in warehouse with their attributes)");
+        System.out.println("4.Add new item to warehouse");
+        System.out.println("5.Orders menu");
+        System.out.println("6.Back to previous menu");
+        System.out.println("0.Exit");
     }
 
     public  void selectManagerOption(){
 
-        Scanner myScanner= new Scanner(System.in);
-
-        String  choice=myScanner.nextLine();
+        choice = in.next();
 
         switch (choice){
             case "1":
                 System.out.println("PRODUCTS");
-                ProductService productService1=new ProductService();
                 ListPrinter listPrinter=new ListPrinter();
-                listPrinter.printList(productService1.getProducts());
-
-                ManagerMenu managerMenu=new ManagerMenu();
-                managerMenu.displayMenu();
-                managerMenu.selectManagerOption();
-
-
-
-
-                break;
+                listPrinter.printList(productService.getProducts());
+               menuBack();
             case "2":
                 System.out.println("CREATE NEW PRODUCT");
-                ProductService productService=new ProductService();
                 productService.addProduct(productService.createProduct());
-
-                ManagerMenu managerMenu1=new ManagerMenu();
-                managerMenu1.displayMenu();
-                managerMenu1.selectManagerOption();
-
-                break;
-
+                System.out.println("Product added");
+                managerMenu();
             case "3":
-                System.out.println("MANAGERS");
+                System.out.println("Items on storehouse");
 
-                break;
+                menuBack();
             case "4":
-                System.out.println("CREATE NEW MANAGER");
+                System.out.println("Add item to storehouse");
                 //ManagerService managerService=new ManagerService();
                 //Manager manager=new Manager();
                 //managerService.addNewManager(manager.createManager());
-                FirstMenu fm=new FirstMenu();
-                fm.displayMenu();
-                fm.selectOption();
 
-                break;
-
-
-
-            case "q":
-                System.out.println("Are you really want to quite???");
+            case "0":
+                System.out.println("Bye Bye:)");
 
                 break;
 
             default:
                 System.out.println("Incorrect choice");
+                System.out.println("Try again");
+                managerMenu();
         }
 
 

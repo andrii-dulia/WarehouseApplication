@@ -10,7 +10,7 @@ public class Product {
     @Id
     @Column(name="product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private long productId;
 
     @Column(name="product_name")
     private String name;
@@ -26,16 +26,20 @@ public class Product {
     private Warehouse warehouseItem;
 
 
-
-
-
-
-    public int getProductId() {
-        return productId;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setOrdersDetails(Set<OrderDetails> ordersDetails) {
+        this.ordersDetails = ordersDetails;
+    }
+
+    public void setWarehouseItem(Warehouse warehouseItem) {
+        this.warehouseItem = warehouseItem;
+    }
+
+    public Long getProductId() {
+        return productId;
     }
 
     public String getName() {

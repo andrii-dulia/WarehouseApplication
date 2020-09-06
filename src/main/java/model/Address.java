@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="address")
+@Table(name="Address")
 public class Address {
 
         @Id
@@ -40,6 +40,14 @@ public class Address {
                 this.city = city;
                 this.post_code = post_code;
                 this.street_and_number = street_and_number;
+        }
+
+        public void setAddressId(long addressId) {
+                this.addressId = addressId;
+        }
+
+        public void setClient(Client client) {
+                this.client = client;
         }
 
         public long getAddressId() {
