@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="Address")
+@Table(name="addresses")
 public class Address {
 
         @Id
@@ -84,6 +84,10 @@ public class Address {
 
         public void setStreet_and_number(String street_and_number) {
                 this.street_and_number = street_and_number;
+        }
+
+        public Client getClient() {
+                return client;
         }
 
         @Override

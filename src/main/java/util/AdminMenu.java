@@ -6,6 +6,7 @@ public class AdminMenu {
     public Scanner in = new Scanner(System.in);
     String choice;
     FirstMenu fm = new FirstMenu();
+    ClientService cs = new ClientService();
 
 
     public void adminMenu1() throws InterruptedException {
@@ -31,18 +32,21 @@ public class AdminMenu {
         switch (choice) {
             case "1":
                 System.out.println("CLIENTS");
+                cs.getClientList();
                 System.out.println("Empty list");
-
+                System.out.println();
 
                 adminMenu1();
             case "2":
                 System.out.println("CREATE NEW CLIENT");
+                cs.addNewClient(cs.createClient());
 
 
-
+                adminMenu1();
             case "3":
                 System.out.println("MANAGERS");
                 managerService.getManagersList();
+                adminMenu1();
 
             case "4":
                 System.out.println("CREATE NEW MANAGER");

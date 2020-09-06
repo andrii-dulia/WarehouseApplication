@@ -1,6 +1,10 @@
 package util;
 
+import model.Order;
+
 public class OrderService {
+    Order order = new Order();
+
 
     public void createOrder(){
         System.out.println("PlEASE PROVIDE NECCESSARY DATA TO CREATE ORDER");

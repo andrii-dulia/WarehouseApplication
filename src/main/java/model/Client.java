@@ -30,6 +30,9 @@ public class Client {
     private Set<OrderDetails> orderDetailsSet = new HashSet<>();
 
 
+    public Client(String fullName) {
+        this.fullName = fullName;
+    }
 
     public void setClientId(long clientId) {
         this.clientId = clientId;
@@ -37,10 +40,6 @@ public class Client {
 
     public void setOrderList(Set<Order> orderList) {
         this.orders = orderList;
-    }
-
-    public Client(String fullName) {
-        this.fullName = fullName;
     }
 
     public long getClientId() {

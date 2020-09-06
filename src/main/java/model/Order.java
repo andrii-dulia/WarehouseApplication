@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "orders")
 
 public class Order {
 
@@ -14,7 +14,7 @@ public class Order {
     private long orderId;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "OrderDetails")
+    @JoinTable(name = "order_details")
     private Collection<OrderDetails> orderDetails;
 
     @ManyToOne
