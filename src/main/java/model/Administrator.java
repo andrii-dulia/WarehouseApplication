@@ -18,12 +18,12 @@ public class Administrator {
     @Column
     String password;
 
-    public void setAdminId(long adminId) {
-        this.adminId = adminId;
-    }
-
     public long getAdminId() {
         return adminId;
+    }
+
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
     }
 
     public String getName() {

@@ -14,10 +14,12 @@ import java.util.Scanner;
 
 public class ProductService {
 
+    final StandardServiceRegistry standardServiceRegistry=
+            new StandardServiceRegistryBuilder().configure().build();
+
     public Product getProductById(int id){
 
-        final StandardServiceRegistry standardServiceRegistry=
-                new StandardServiceRegistryBuilder().configure().build();
+
 
         Product product=null;
 
@@ -98,6 +100,9 @@ public class ProductService {
 
         public List<Product> getProducts(){
 
+
+
+
             final StandardServiceRegistry standardServiceRegistry=
                     new StandardServiceRegistryBuilder().configure().build();
 
@@ -129,7 +134,6 @@ public class ProductService {
             return products;
 
     }
-
 
 
 

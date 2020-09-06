@@ -3,29 +3,27 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Order_details")
+@Table(name="order_details")
 public class OrderDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="detail_id")
-    private long orderDetailsId ;
+
+    long    orederDetailsId ;
 
     @ManyToOne
     @JoinColumn(name="product_id")
+
     private Product product;
 
     @Column(name="quantity")
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "Order_id")
+    @JoinColumn(name="order_id")
 
     private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "Client")
-    private Client client;
 
     // CONSTRUCTORS
 
@@ -35,16 +33,12 @@ public class OrderDetails {
         this.quantity = quantity;
     }
 
-    public Client getClient() {
-        return client;
+    public long getOrederDetailsId() {
+        return orederDetailsId;
     }
 
-    public long getOrder_details_id() {
-        return orderDetailsId;
-    }
-
-    public void setOrder_details_id(long order_details_id) {
-        this.orderDetailsId = orderDetailsId;
+    public void setOrederDetailsId(long orederDetailsId) {
+        this.orederDetailsId = orederDetailsId;
     }
 
     public Product getProduct() {
@@ -74,7 +68,7 @@ public class OrderDetails {
     @Override
     public String toString() {
         return "OrderDetails{" +
-                "orederDetailsId=" + orderDetailsId +
+                "orederDetailsId=" + orederDetailsId +
                 ", product=" + product.getName() +
                 ", quantity=" + quantity +
                 ", order=" + order +

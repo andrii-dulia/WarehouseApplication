@@ -9,10 +9,10 @@ public class Warehouse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="item_id")
 
-    private long id;
+    long    id ;
 
-    @Column(name = "material_number")
-    String warehouseUniqueId;
+    @Column(name = "material_name")
+    String warehouseUniqueName;
 
     @OneToOne
     @JoinColumn(name="product_id")
@@ -25,20 +25,20 @@ public class Warehouse {
     //GETTERS ANE SETTERS
 
 
+    public long getId() {
+        return id;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
+    public String getWarehouseUniqueName() {
+        return warehouseUniqueName;
     }
 
-    public String getWarehouseUniqueId() {
-        return warehouseUniqueId;
-    }
-
-    public void setWarehouseUniqueId(String warehouseUniqId) {
-        this.warehouseUniqueId = warehouseUniqId;
+    public void setWarehouseUniqueName(String warehouseUniqId) {
+        this.warehouseUniqueName = warehouseUniqId;
     }
 
     public Product getProduct() {
@@ -58,6 +58,10 @@ public class Warehouse {
     }
 
     // CONSTRUCTORS
+
+
+    public Warehouse() {
+    }
 
     public Warehouse(Product product, int quantity) {
         this.product = product;

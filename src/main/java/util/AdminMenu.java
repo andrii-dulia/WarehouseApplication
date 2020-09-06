@@ -1,11 +1,11 @@
 package util;
 
-
 import java.util.Scanner;
 
 public class AdminMenu {
     public Scanner in = new Scanner(System.in);
     String choice;
+    FirstMenu fm = new FirstMenu();
 
 
     public void adminMenu1() throws InterruptedException {
@@ -26,7 +26,7 @@ public class AdminMenu {
     }
 
     public void selectAdminOption() throws InterruptedException {
-
+        ManagerService managerService = new ManagerService();
         choice = in.next();
         switch (choice) {
             case "1":
@@ -42,12 +42,11 @@ public class AdminMenu {
 
             case "3":
                 System.out.println("MANAGERS");
-
+                managerService.getManagersList();
 
             case "4":
                 System.out.println("CREATE NEW MANAGER");
 
-                ManagerService managerService = new ManagerService();
                 managerService.addNewManager(managerService.createManager());
                 System.out.println("Manager created");
                 adminMenu1();
@@ -55,7 +54,7 @@ public class AdminMenu {
 
             case "0":
                 System.out.println("Bye Bye");
-                adminMenu1();
+               break;
 
             default:
                 System.out.println("Incorrect choice");
@@ -76,6 +75,4 @@ public class AdminMenu {
         }
         return result;
     }
-
-
 }

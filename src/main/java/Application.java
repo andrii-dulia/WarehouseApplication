@@ -1,21 +1,28 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import util.DataBaseCreator;
 import util.FirstMenu;
+import util.OrderDetailsService;
+import util.WarehouseService;
 
 public class Application {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("WAREHOUSE MANAGEMENT APPLICATION");
 
 
-        // connection to DataBase and create all tables
+//        // connection to DataBase and create all tables
         DataBaseCreator dataBaseCreator=new DataBaseCreator();
         dataBaseCreator.createDataBase();
-
-        // test - order details
+//
+//        // test - order details
 //        OrderDetailsService orderDetailsService=new OrderDetailsService();
 //        orderDetailsService.addProductasOrderDetail(orderDetailsService.createSinglePositionInOrder());
-        //System.out.println(orderDetailsService.createSinglePositionInOrder().toString());
-
-        // test add product to warehouse
+//        //System.out.println(orderDetailsService.createSinglePositionInOrder().toString());
+//
+//        // test add product to warehouse
 //        WarehouseService warehouseService=new WarehouseService();
 //        warehouseService.addProductToWarehouse(warehouseService.createSinglePositionInWarehouse());
 
@@ -35,7 +42,7 @@ public class Application {
 
 
         // display  application menus and choosing option from menus
-
+//
         FirstMenu fm=new FirstMenu();
         fm.menu1();
     }

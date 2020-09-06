@@ -8,7 +8,7 @@ public class FirstMenu {
     Scanner in = new Scanner(System.in);
     String choice;
     String name;
-
+    FirstMenu fm=new FirstMenu();
 
 
 
@@ -42,9 +42,17 @@ public class FirstMenu {
                     menu1();
                 }
             case "2":
-                ManagerMenu managerMenu = new ManagerMenu();
                 System.out.println("Log as manager");
-                managerMenu.managerMenu();
+
+
+                ManagerMenu managerMenu=new ManagerMenu();
+                if (managerMenu.logIn()==true){
+                    managerMenu.managerMenu();
+                } else {
+                    System.out.println(" You can not procced as manager!!!");
+
+                    fm.menu1();
+                }
 
             case "0":
                 System.out.println("Bye Bye:)");
@@ -55,5 +63,14 @@ public class FirstMenu {
                 System.out.println("Try again");
                 menu1();
         }
+
+
+
+
     }
+
+
+
+
+
 }
