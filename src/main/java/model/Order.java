@@ -2,39 +2,38 @@ package model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
-@Table(name = "orders")
-
+@Entity(name = "orders")
 public class Order {
 
     @Id
     @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long orderId;
+    private Long orderId;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "order_details")
-    private Collection<OrderDetails> orderDetails;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    public long getOrderId() {
+    @OneToOne
+    @JoinColumn(name = "short_company_name")
+    private Client clientName;
+
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private Set<Product> products = new HashSet<>();
+
+    @Column(name = "quantity")
+    private Long id;
+
+    public Long getOrderId() {
         return orderId;
     }
 
     public void setOrderId(long orderId) {
         this.orderId = orderId;
-    }
-
-    public Collection<OrderDetails> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(Collection<OrderDetails> orderDetails) {
-        this.orderDetails = orderDetails;
     }
 
     public Client getClient() {
@@ -45,13 +44,20 @@ public class Order {
         this.client = client;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderDetailsSet=" + orderDetails +
-                ", client=" + client +
-                '}';
+    public Client getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(Client clientName) {
+        this.clientName = clientName;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }
 

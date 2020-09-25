@@ -1,80 +1,49 @@
 package util;
 
+import model.Address;
+import model.Client;
 import model.Manager;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ManagerService {
+    Scanner in = new Scanner(System.in);
 
-    public Manager createManager() {
+    public void createManager(Session session) {
+        Transaction transaction = session.beginTransaction();
         Manager manager = new Manager();
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Please provide manager name");
-        manager.setName(scanner.nextLine());
-        System.out.println("Password is automatically setted - '1111'!");
+        manager.setName(in.next());
+        System.out.println("Please provide password");
+        manager.setPassword(in.next());
+        if (manager.getPassword()==null||manager.getPassword()==""){
+            manager.setPassword("1111");
+        }
 
-        return manager;
+        session.save(manager);
+        transaction.commit();
     }
 
-    public void addNewManager(Manager manager) {
-        manager = new Manager();
-        final StandardServiceRegistry standardServiceRegistry =
-                new StandardServiceRegistryBuilder().configure().build();
+    public List<Manager> getManagersList(Session session, Class<Manager> clientClass){
+                Query<Manager> query = session.createQuery("from managers");
+        ArrayList<Manager> managerList = (ArrayList<Manager>) query.list();
+        return managerList;
 
-        try (SessionFactory sessionFactory = new MetadataSources(standardServiceRegistry)
-                .buildMetadata().buildSessionFactory()) {
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            session.save(manager);
-            transaction.commit();
-
-
-            session.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
+    public void removeManager(Session session, Long id) {
+        Transaction transaction = session.beginTransaction();
 
-    // get list of managers
-
-    public List<Manager> getManagersList() {
-
-        final StandardServiceRegistry standardServiceRegistry =
-                new StandardServiceRegistryBuilder().configure().build();
-
-
-        List<Manager> managers = null;
-
-
-        try (SessionFactory sessionFactory = new MetadataSources(standardServiceRegistry)
-                .buildMetadata().buildSessionFactory()) {
-            Session session = sessionFactory.openSession();
-
-            Transaction transaction = null;
-
-            try {
-                transaction = session.beginTransaction();
-                managers = session.createQuery("from Manager").list();
-                transaction.commit();
-
-            } catch (HibernateException e) {
-                if (transaction != null) transaction.rollback();
-                e.printStackTrace();
-            }
-
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        Manager manager = session.find(Manager.class, id);
+        if (Objects.nonNull(manager)) {
+            session.delete(manager);
         }
-        return managers;
+        transaction.commit();
+
     }
 }

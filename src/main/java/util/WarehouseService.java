@@ -22,13 +22,13 @@ public class WarehouseService {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Please provide product id");
 
-        int providedId=scanner.nextInt();
+        Long providedId=scanner.nextLong();
         ProductService productService=new ProductService();
         Product product=productService.getProductById(providedId);
 
         System.out.println("Please provide quantity of products which will be added to warehouse");
 
-        int quantity=scanner.nextInt();
+        Long quantity=scanner.nextLong();
 
         Warehouse warehouseItem=new Warehouse(product,quantity);
 

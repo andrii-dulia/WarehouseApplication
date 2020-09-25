@@ -4,19 +4,18 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name="products")
+@Entity(name="products")
 public class Product {
     @Id
     @Column(name="product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long productId;
+    private Long productId;
 
     @Column(name="product_name")
     private String name;
 
     @Column(name="product_price")
-    private int price;
+    private Long price;
 
 
     @OneToMany(mappedBy = "product")
@@ -26,7 +25,7 @@ public class Product {
     private Warehouse warehouseItem;
 
 
-    public void setProductId(long productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -50,21 +49,12 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Long price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
     }
 }
 

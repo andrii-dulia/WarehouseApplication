@@ -1,20 +1,25 @@
 package model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-@Entity
-@Table(name="Client")
-public class Client {
+@Entity(name="clients")
+public class Client implements Serializable {
 
     @Id
-    @Column(name="client_id")
+    @Column(name = "client_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long clientId;
+    private Long id;
 
-    @Column(name = "full_name")
+    @NotNull
+    @Column(name = "short_company_name")
+    private String companyName;
+
+    @Column(name = "full_company_name")
     private String fullName;
 
     @OneToOne
@@ -23,27 +28,27 @@ public class Client {
 
     @OneToMany
     @JoinColumn(name = "Order_id")
-    private Set<Order> orders=new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
     @OneToMany
     @JoinColumn(name = "Order_details")
     private Set<OrderDetails> orderDetailsSet = new HashSet<>();
 
 
-    public Client(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setClientId(long clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setOrderList(Set<Order> orderList) {
-        this.orders = orderList;
-    }
-
     public long getClientId() {
-        return clientId;
+        return id;
+    }
+
+    public void setClientId(Long clientId) {
+        this.id = clientId;
+    }
+
+    public String getCompanyName(String companyName) {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getFullName() {
@@ -54,6 +59,10 @@ public class Client {
         this.fullName = fullName;
     }
 
+    public void setOrderList(Set<Order> orderList) {
+        this.orders = orderList;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -61,13 +70,5 @@ public class Client {
     public void setAddress(Address address) {
         this.address = address;
     }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "clientId=" + clientId +
-                ", fullName='" + fullName + '\'' +
-                ", addressList=" + address +
-                '}';
-    }
 }
+

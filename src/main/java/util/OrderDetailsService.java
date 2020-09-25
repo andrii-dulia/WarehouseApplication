@@ -17,20 +17,20 @@ public class OrderDetailsService {
     // create single position to order by providing product id
     public OrderDetails createSinglePositionInOrder(){
 
-        Scanner scanner=new Scanner(System.in);
+        Scanner in=new Scanner(System.in);
         System.out.println("Please provide product id");
 
-        int providedId=scanner.nextInt();
+        Long providedId = in.nextLong();
         ProductService productService=new ProductService();
-        Product product=productService.getProductById(providedId);
+
 
         System.out.println("Please provide quantity");
 
-        int quantity=scanner.nextInt();
-        OrderDetails orderDetails=new OrderDetails(product,quantity);
+        Long quantity=in.nextLong();
 
 
-        return orderDetails;
+
+        return null;
 
     }
 

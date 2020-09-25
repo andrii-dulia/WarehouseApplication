@@ -1,5 +1,6 @@
 package util;
 
+import model.Client;
 import model.Product;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,129 +9,43 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductService {
-
-    final StandardServiceRegistry standardServiceRegistry=
-            new StandardServiceRegistryBuilder().configure().build();
-
-    public Product getProductById(int id){
+    Scanner in = new Scanner(System.in);
 
 
+    public Product getProductById(Long id){
 
-        Product product=null;
-
-        try (SessionFactory sessionFactory=new MetadataSources(standardServiceRegistry)
-                .buildMetadata().buildSessionFactory()){
-            Session session=sessionFactory.openSession();
-            Transaction transaction=null;
-
-            try{
-                transaction=session.beginTransaction();
-                product=session.get(Product.class,id);
-                transaction.commit();
-            } catch (HibernateException e){
-                if (transaction!=null) transaction.rollback();
-                e.printStackTrace();
-            }
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return product;
-
+        return null;
     }
-
-
-
-
-
-
-
 
     // create product
 
 
-    public Product createProduct(){
+    public void createProduct(Session session){
+        Transaction transaction = session.beginTransaction();
         Product product=new Product();
-        Scanner scanner=new Scanner(System.in);
         System.out.println("Please provide product name");
-        product.setName(scanner.nextLine());
+        product.setName(in.nextLine());
         System.out.println("Please provide product price");
-        product.setPrice(scanner.nextInt());
-        return product;
+        product.setPrice(in.nextLong());
+
+        session.save(product);
+        transaction.commit();
 
     }
 
-    // add product to Data Base
 
-    public void addProduct(Product product){
+        public List<Product> getProducts(Session session, Class<Product> productClass){
 
-        final StandardServiceRegistry standardServiceRegistry=
-                new StandardServiceRegistryBuilder().configure().build();
+            Query<Product> query = session.createQuery("FROM products");
+            ArrayList<Product> products = (ArrayList<Product>) query.list();
 
-        try (SessionFactory sessionFactory=new MetadataSources(standardServiceRegistry)
-                .buildMetadata().buildSessionFactory()){
-            Session session=sessionFactory.openSession();
-
-            Transaction transaction=null;
-            try{
-                transaction=session.beginTransaction();
-                session.save(product);
-                transaction.commit();
-            } catch (HibernateException e){
-                if (transaction!=null) transaction.rollback();
-                e.printStackTrace();
-            }
-
-            session.close();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-
-        // get list of products
-
-        public List<Product> getProducts(){
-
-
-
-
-            final StandardServiceRegistry standardServiceRegistry=
-                    new StandardServiceRegistryBuilder().configure().build();
-
-
-        List<Product> products=null;
-
-
-            try (SessionFactory sessionFactory=new MetadataSources(standardServiceRegistry)
-                    .buildMetadata().buildSessionFactory()){
-                Session session=sessionFactory.openSession();
-
-                Transaction transaction=null;
-
-                try{
-                    transaction=session.beginTransaction();
-                    products=session.createQuery("from Product").list();
-                    transaction.commit();
-
-                } catch (HibernateException e){
-                    if (transaction!=null) transaction.rollback();
-                    e.printStackTrace();
-                }
-
-                session.close();
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
             return products;
 
     }

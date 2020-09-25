@@ -3,26 +3,25 @@ package model;
 import javax.persistence.*;
 
 
-@Entity
-@Table(name="administrators")
+@Entity(name="administrators")
 public class Administrator {
 
     @Id
     @GeneratedValue
     @Column(name="admin_id")
-    long adminId;
+    private Long adminId;
 
     @Column(name="admin_name")
-    String name;
+    private String name;
 
     @Column
-    String password;
+    private String password;
 
-    public long getAdminId() {
+    public Long getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(long adminId) {
+    public void setAdminId(Long adminId) {
         this.adminId = adminId;
     }
 
@@ -40,15 +39,6 @@ public class Administrator {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Administrator{" +
-                "adminId=" + adminId +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }
 

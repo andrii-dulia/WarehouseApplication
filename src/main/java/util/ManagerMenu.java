@@ -1,62 +1,54 @@
 package util;
 
+import model.Manager;
+import org.hibernate.Session;
+
+import java.util.List;
 import java.util.Scanner;
 
-public class ManagerMenu implements LogIn {
+public class ManagerMenu {
 
     Scanner in = new Scanner(System.in);
     String  choice;
     String back = "";
+    FirstMenu firstMenu = new FirstMenu();
     ProductService productService=new ProductService();
     WarehouseService warehouseService=new WarehouseService();
-
-    public void menuBack(){
-        System.out.println("0. Previous menu");
+    ManagerService ms = new ManagerService();
+    Session session;
+    public void managerMenu(Session session) throws InterruptedException {
+        displayMenu();
+       selectManagerOption(session);
+    }
+    public void menuBack() throws InterruptedException {
+        System.out.println("x. Previous menu");
         back = in.next();
-        if (back=="0"){
-            managerMenu();
+        if (back=="x"){
+            firstMenu.mainMenu(session);
         }else {
             System.out.println("try again!!!");
             menuBack();
         }
     }
-    public void managerMenu(){
-        displayMenu();
-        selectManagerOption();
-    }
-
     public void displayMenu(){
         System.out.println("Manager options:");
-        System.out.println("1.List of the products");
-        System.out.println("2.Add new products");
-        System.out.println("3.List of warehouse items (products in warehouse with their attributes)");
-        System.out.println("4.Add new item to warehouse");
-        System.out.println("5.Orders menu");
-        System.out.println("6.Back to previous menu");
-        System.out.println("0.Exit");
+        System.out.println("1. Create order");
+        System.out.println("2. List of the products");
+        System.out.println("3. Shipment");
+        System.out.println("4. stuff on magazine");
+        System.out.println("5. Back to previous menu");
+        System.out.println("x. Exit");
     }
 
-    public  void selectManagerOption(){
-
+    public  void selectManagerOption(Session session) throws InterruptedException {
         choice = in.next();
-
         switch (choice){
             case "1":
-                ProductService productService1=new ProductService();
-               for(int i=0;i<productService1.getProducts().size();i++){
-                   System.out.println(productService1.getProducts().get(i).toString());
-               }
 
-                //System.out.println("PRODUCTS");
-               // ProductService productService1=new ProductService();
-               // ListPrinter listPrinter=new ListPrinter();
-               // listPrinter.productListPrint(productService1.getProducts());
                 menuBack();
             case "2":
-                System.out.println("CREATE NEW PRODUCT");
-                productService.addProduct(productService.createProduct());
-                System.out.println("Product added");
-                managerMenu();
+
+                managerMenu(session);
             case "3":
                 System.out.println("Items on storehouse");
 
@@ -65,61 +57,43 @@ public class ManagerMenu implements LogIn {
                 System.out.println("ADD  PRODUCT TO WAREHOUSE");
                 warehouseService.addProductToWarehouse(warehouseService.createSinglePositionInWarehouse());
                 System.out.println("Product added");
-                managerMenu();
+                managerMenu(session);
 
+            case "5":
+                firstMenu.mainMenu(session);
 
-            case "0":
+            case "x":
                 System.out.println("Bye Bye:)");
-
-                break;
+                System.exit(0);
             default:
                 System.out.println("Incorrect choice");
                 System.out.println("Try again");
-                managerMenu();
+                managerMenu(session);
         }
 
 
     }
 
-    @Override
-    public boolean logIn() {
-        boolean result = true;
-        System.out.println("Please provide your adminID");
-        boolean managerNameIsCorrect=false;
-  /*
-        do{
-            Scanner adScan=new Scanner(System.in);
-            String tempId=adScan.nextLine();
+    public boolean logIn(Session session) {
 
-            if (tempName.equals(adminID)){
-                adminIdIsCorrect=true;
-                System.out.println("Please provide your PIN(4digits)?");
-                boolean pinIsCorrect=true;
-                int counter=0;
-                do {
-                    String tempPin=adScan.nextLine();
-
-                    if (tempPin.equals(adminPin)){
-                        System.out.println("You have loged in as administrator!!!");
-                        pinIsCorrect=true;
-                        result=true;
-                    }else {
-                        pinIsCorrect=false;
-                        result=false;
-                        System.out.println("You have provided wrong PIN!!!Please provide again?");
-                        counter++;
-                        if (counter==1) System.out.println("You have 2 attempts!!!");
-                        if (counter==2) System.out.println("last attempt!!!!");
-                        if (counter==3) pinIsCorrect=true;
-                    }
-                }while (pinIsCorrect==false);
-
-            }else{
-                System.out.println("You have provided wrong adminID.Please provide again!");
-                adminIdIsCorrect=false;
-            }
-        }while(managerNameIsCorrect==false);
-*/
-        return true;
+        System.out.println("Managers:");
+        System.out.println();
+        List<Manager> managerList = ms.getManagersList(session, Manager.class);
+        System.out.println(managerList);
+        System.out.println("Please provide manager id");
+        System.out.println();
+        boolean managerIn=false;
+        Long id= in.nextLong();
+        String pass;
+        Manager manager = session.find(Manager.class, id);
+        System.out.println("password:");
+        pass = in.next();
+        if (manager!=null&manager.getPassword().equals(pass)){
+            managerIn=true;
+        }else {
+            System.out.println("wrong id or password");
+            logIn(session);
+        }
+        return managerIn;
     }
 }

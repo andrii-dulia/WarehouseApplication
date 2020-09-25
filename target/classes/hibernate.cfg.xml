@@ -10,7 +10,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">19Sprzaczka88</property>
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">100</property>
+        <property name="connection.pool_size">50</property>
         <property name="hibernate.connection.characterEncoding">UTF-8</property>
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -18,7 +18,9 @@
         <property name="show_sql">true</property>
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
+<!--        <property name="hbm2ddl.auto">drop</property>-->
         <!-- Names the annotated entity class -->
+
         <mapping class="model.Administrator"/>
         <mapping class="model.Manager"/>
         <mapping class="model.Product"/>
@@ -27,9 +29,6 @@
         <mapping class="model.OrderDetails"/>
         <mapping class="model.Address"/>
         <mapping class="model.Client"/>
-
-
-
 
 
     </session-factory>

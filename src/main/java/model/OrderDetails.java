@@ -2,15 +2,14 @@ package model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="order_details")
+@Entity(name="order_details")
 public class OrderDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="detail_id")
 
-    long    orederDetailsId ;
+    private Long orderDetailsId ;
 
     @ManyToOne
     @JoinColumn(name="product_id")
@@ -18,7 +17,7 @@ public class OrderDetails {
     private Product product;
 
     @Column(name="quantity")
-    private int quantity;
+    private Long quantity;
 
     @ManyToOne
     @JoinColumn(name="order_id")
@@ -28,17 +27,17 @@ public class OrderDetails {
     // CONSTRUCTORS
 
 
-    public OrderDetails(Product product, int quantity) {
+    public OrderDetails(Product product, Long quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
-    public long getOrederDetailsId() {
-        return orederDetailsId;
+    public long getOrderDetailsId() {
+        return orderDetailsId;
     }
 
-    public void setOrederDetailsId(long orederDetailsId) {
-        this.orederDetailsId = orederDetailsId;
+    public void setOrderDetailsId(Long orderDetailsId) {
+        this.orderDetailsId = orderDetailsId;
     }
 
     public Product getProduct() {
@@ -49,11 +48,11 @@ public class OrderDetails {
         this.product = product;
     }
 
-    public int getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
@@ -63,15 +62,5 @@ public class OrderDetails {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderDetails{" +
-                "orederDetailsId=" + orederDetailsId +
-                ", product=" + product.getName() +
-                ", quantity=" + quantity +
-                ", order=" + order +
-                '}';
     }
 }

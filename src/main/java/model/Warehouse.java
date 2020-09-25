@@ -2,34 +2,32 @@ package model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="warehouse_items")
+@Entity(name="warehouse_items")
 public class Warehouse {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="item_id")
-
-    long    id ;
+    Long id;
 
     @Column(name = "material_name")
-    String warehouseUniqueName;
+    private String warehouseUniqueName;
 
     @OneToOne
     @JoinColumn(name="product_id")
-
     private Product product;
 
     @Column(name="quantity")
-    int quantity;
+    private Long quantity;
 
     //GETTERS ANE SETTERS
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +47,11 @@ public class Warehouse {
         this.product = product;
     }
 
-    public int getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
@@ -63,7 +61,7 @@ public class Warehouse {
     public Warehouse() {
     }
 
-    public Warehouse(Product product, int quantity) {
+    public Warehouse(Product product, Long quantity) {
         this.product = product;
         this.quantity = quantity;
     }

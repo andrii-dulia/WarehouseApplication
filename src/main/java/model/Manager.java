@@ -1,30 +1,28 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Scanner;
+import java.io.Serializable;
 
-@Entity
-@Table(name="managers")
-public class Manager {
+@Entity(name="managers")
+public class Manager implements Serializable {
+
     @Id
-    @GeneratedValue
-    @Column(name="manager_id")
-
-    long managerId;
+    @Column(name = "manager_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name="manager_name")
-
-    String name;
+    private String name;
 
     @Column
-    String password;
+    private String password;
 
     public void setManagerId(long managerId) {
-        this.managerId = managerId;
+        this.id = managerId;
     }
 
-    public long getManagerId() {
-        return managerId;
+    public Long getManagerId() {
+        return id;
     }
 
     public String getName() {
@@ -42,16 +40,4 @@ public class Manager {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    @Override
-    public String toString() {
-        return "model.Client.Manager{" +
-                "managerId=" + managerId +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-
-
 }
